@@ -1,0 +1,33 @@
+{% for article in articles %}
+    <div class="article-preview">
+        <div class="article-meta">
+            <a href="{{ path('profile_index', {'username': article.author.username}) }}">
+                <img src="{{ article.author.image }}">
+            </a>
+            <div class="info">
+                <a class="author" href="{{ path('profile_index', {'username': article.author.username}) }}">{{ article.author.username }}</a>
+                <span class="date">{{ article.createdAt | date }}</span>
+            </div>
+            <div class="pull-xs-right">
+                <button class="btn btn-sm btn-outline-primary">
+                    <i class="ion-heart"></i>
+                    <span class=" ng-scope">{{ article.favoritesCount }}</span>
+                </button>
+            </div>
+        </div>
+        <a href="#" class="preview-link">
+            <h1>{{ article.title }}</h1>
+            <p>
+                {{ article.body }}
+            </p>
+            <span>Read more...</span>
+            <ul class="tag-list">
+                {% for tag in article.tagList %}
+                    <li class="tag-default tag-pill tag-outline">
+                        {{ tag }}
+                    </li>
+                {% endfor %}
+            </ul>
+        </a>
+    </div>
+{% endfor %}
